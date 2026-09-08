@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+        FlowVid never uploads, transmits, or analyzes remotely. There is
+        intentionally NO android.permission.INTERNET declared anywhere in
+        this app: every dependency (Media3, Room, DataStore, Coil) is used
+        purely for local playback, local storage, and local thumbnail
+        decoding, none of which requires network access.
+    -->
+
+    <!-- Android 13+ (API 33+): granular media permission. -->
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
+    <!--
+        Android 14+ (API 34+): required so the system's "select videos"
+        partial-access flow is offered to the user instead of only
+        all-or-nothing access. FlowVid works fine with a partial grant;
+        it simply shows whatever videos MediaStore returns.
+    -->
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
+
+    <!-- Android 12L and below (API <= 32): legacy broad media permission. -->
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
+    <application
+        android:name=".FlowVidApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FlowVid"
+        android:hardwareAccelerated="true"
+        tools:targetApi="35">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:configChanges="uiMode|density|screenSize|smallestScreenSize|screenLayout|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FlowVid.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

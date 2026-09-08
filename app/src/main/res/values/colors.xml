@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- FlowVid's palette: a warm "projector bulb" amber against near-black,
+         evoking a private film reel rather than a social feed. Used both by
+         the pre-Compose XML theme (splash / window background) and mirrored
+         in ui/theme/Color.kt for Compose. -->
+    <color name="flowvid_background">#0B0B0D</color>
+    <color name="flowvid_surface">#16161A</color>
+    <color name="flowvid_amber">#E3A83B</color>
+    <color name="flowvid_on_background">#F2F0EC</color>
+</resources>

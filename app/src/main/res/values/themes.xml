@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. Compose (FlowVidTheme in ui/theme/Theme.kt)
+         takes over all real styling once the Activity's content is set;
+         this XML theme only controls the window before that happens. -->
+    <style name="Theme.FlowVid" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/flowvid_background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="29">false</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
+    </style>
+
+    <!-- Launch/splash theme, active only until installSplashScreen() hands
+         control to the first Compose frame in MainActivity. -->
+    <style name="Theme.FlowVid.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/flowvid_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.FlowVid</item>
+    </style>
+
+</resources>

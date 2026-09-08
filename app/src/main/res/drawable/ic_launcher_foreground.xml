@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Rounded frame, echoing a single film/video frame -->
+    <path
+        android:strokeColor="#F2F0EC"
+        android:strokeWidth="3.2"
+        android:strokeAlpha="0.35"
+        android:pathData="M34,30 h40 a8,8 0 0 1 8,8 v32 a8,8 0 0 1 -8,8 h-40 a8,8 0 0 1 -8,-8 v-32 a8,8 0 0 1 8,-8 z" />
+    <!-- Amber play triangle, the app's single deliberate accent -->
+    <path
+        android:fillColor="#E3A83B"
+        android:pathData="M48,42 L72,54 L48,66 Z" />
+</vector>

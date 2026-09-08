@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!--
+        FlowVid stores only small local metadata: favorite/history references
+        (a content Uri plus a display name) and user preferences. It never
+        stores or backs up actual video bytes, so the defaults are safe here.
+    -->
+</full-backup-content>
