@@ -25,14 +25,19 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Android SDK
+      - name: Install Android SDK packages
         run: |
           sdkmanager "platform-tools"
-          sdkmanager "platforms;android-35"
-          sdkmanager "build-tools;35.0.0"
+          sdkmanager "platforms;android-37"
+          sdkmanager "build-tools;36.0.0"
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.6'
+
+      - name: Generate Gradle wrapper
+        run: gradle wrapper --gradle-version 9.6
 
       - name: Build debug APK
         run: |
@@ -44,3 +49,5 @@ jobs:
         with:
           name: FlowVid-debug
           path: app/build/outputs/apk/debug/*.apk
+
+
