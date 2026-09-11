@@ -25,11 +25,8 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Android SDK packages
-        run: |
-          sdkmanager "platform-tools"
-          sdkmanager "platforms;android-37"
-          sdkmanager "build-tools;36.0.0"
+      - name: Accept SDK licenses
+        run: yes | sdkmanager --licenses > /dev/null || true
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -49,5 +46,3 @@ jobs:
         with:
           name: FlowVid-debug
           path: app/build/outputs/apk/debug/*.apk
-
-
