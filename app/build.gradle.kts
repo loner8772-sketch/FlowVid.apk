@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
 }
@@ -22,11 +21,9 @@ android {
     }
 
     // Release signing is optional: if KEYSTORE_PATH (and friends) are supplied as
-    // environment variables - as the android-release.yml workflow does when the
-    // KEYSTORE_BASE64/KEYSTORE_PASSWORD/KEY_ALIAS/KEY_PASSWORD repo secrets are set -
-    // the release build is signed with that keystore. Otherwise it falls back to the
-    // debug keystore so `assembleRelease` still produces an installable APK locally
-    // or in CI without any secrets configured.
+    // environment variables, the release build is signed with that keystore.
+    // Otherwise it falls back to the debug keystore so `assembleRelease` still
+    // produces an installable APK locally or in CI without any secrets configured.
     val releaseKeystorePath = System.getenv("KEYSTORE_PATH")
 
     signingConfigs {
@@ -63,10 +60,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
     }
 
     buildFeatures {
