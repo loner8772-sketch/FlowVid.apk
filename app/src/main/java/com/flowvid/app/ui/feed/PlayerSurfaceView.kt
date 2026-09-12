@@ -1,10 +1,12 @@
 package com.flowvid.app.ui.feed
 
+import androidx.annotation.OptIn
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.media3.common.Player
+import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 
@@ -13,6 +15,7 @@ import androidx.media3.ui.PlayerView
  * unless [zoomToFill] is requested. Controller chrome is always off: FlowVid
  * draws its own minimal, gesture-first UI on top in Compose.
  */
+@OptIn(UnstableApi::class)
 @Composable
 fun PlayerSurfaceView(
     player: Player?,
@@ -30,6 +33,10 @@ fun PlayerSurfaceView(
                 } else {
                     AspectRatioFrameLayout.RESIZE_MODE_FIT
                 }
+                // Media3's official workaround for PlayerView-inside-AndroidView
+                // leaking/misplacing its Surface in scrolling Compose containers
+                // (documented at developer.android.com/media/media3/ui/surface).
+                setEnableComposeSurfaceSyncWorkaround(true)
             }
         },
         update = { view ->
