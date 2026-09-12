@@ -19,13 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 
-/**
- * A very thin (2dp) scrubbable line, deliberately far from a Material Slider
- * in appearance — the video should stay the visual focus.
- *
- * [progressFraction] and [onScrub]/[onScrubFinished] operate in 0f..1f so the
- * caller doesn't need to know pixel widths.
- */
 @Composable
 fun ScrubProgressBar(
     progressFraction: Float,
@@ -36,7 +29,6 @@ fun ScrubProgressBar(
     trackColor: Color = Color.White.copy(alpha = 0.25f),
     fillColor: Color = Color(0xFFE3A83B),
 ) {
-    // -1f means "not currently being dragged"; any 0f..1f value is a live drag position.
     var dragFraction by remember { mutableFloatStateOf(-1f) }
     val shownFraction = (if (dragFraction >= 0f) dragFraction else progressFraction).coerceIn(0f, 1f)
     val barHeight = if (dragFraction >= 0f) 3.dp else 2.dp
@@ -44,7 +36,7 @@ fun ScrubProgressBar(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(24.dp) // generous touch target; the visible bar itself is thin
+            .height(24.dp)
             .pointerInput(Unit) {
                 detectTapGestures { offset ->
                     val fraction = (offset.x / size.width).coerceIn(0f, 1f)
@@ -70,11 +62,10 @@ fun ScrubProgressBar(
                     val fraction = (change.position.x / size.width).coerceIn(0f, 1f)
                     dragFraction = fraction
                     onScrub(fraction)
-                },
+                }
             },
         contentAlignment = Alignment.CenterStart,
     ) {
-        // Track (full width, always visible)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -82,7 +73,6 @@ fun ScrubProgressBar(
                 .clip(RoundedCornerShape(50))
                 .background(trackColor),
         )
-        // Fill (proportional to progress, drawn on top of the track)
         Box(
             modifier = Modifier
                 .fillMaxWidth(shownFraction.coerceAtLeast(0.001f))
