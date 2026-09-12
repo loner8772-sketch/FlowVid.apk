@@ -1,3 +1,5 @@
+@file:OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
+
 package com.flowvid.app.ui.feed
 
 import androidx.compose.foundation.background
@@ -84,8 +86,6 @@ fun FeedScreen(
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    // Pause/resume the active player alongside the host Activity's lifecycle,
-    // independent of the (configChanges-suppressed) rotation lifecycle.
     val lifecycleOwner = LocalLifecycleOwner.current
     LaunchedEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
