@@ -164,7 +164,7 @@ fun FeedScreen(
         VerticalPager(
             state = pagerState,
             modifier = Modifier.fillMaxSize(),
-            beyondViewportPageCount = 1,
+            beyondViewportPageCount = 0,
             key = { index -> uiState.videos.getOrNull(index)?.stableKey ?: index },
         ) { page ->
             val pageVideo = uiState.videos.getOrNull(page) ?: return@VerticalPager
