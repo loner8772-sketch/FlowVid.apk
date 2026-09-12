@@ -1,3 +1,5 @@
+@file:OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
+
 package com.flowvid.app.ui.feed.components
 
 import androidx.compose.foundation.layout.Column
